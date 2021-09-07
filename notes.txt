@@ -1,0 +1,167 @@
+installing laravel6 
+composer create-project --prefer-dist laravel/laravel ecom "6.*"
+
+php artisan serve --port=8100
+php artisan migrate 
+composer require laravel/ui="1.*" --dev
+php artisan ui vue --auth
+npm install
+npm run dev
+
+
+php artisan make:controller Admin/AdminController
+php artisan make:migration create_admins_table
+php artisan make:model Admin
+
+making seeding 
+php artisan make:seeder AdminsTableSeeder
+
+####### After writing seeding
+composer dump-autoload
+
+php artisan db:seed
+
+composer require intervention/image
+
+
+php artisan make:controller Admin/SectionController
+
+php artisan make:migration add_column_to_products
+
+Relationship 
+Lecture #23 V27:22
+
+add remove fields dynamically jquery
+
+https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/
+
+https://jqueryvalidation.org/
+
+################ The Mail from Address under the .env file is necesssary to avoid email from entering spam
+MAIL_FROM_ADDRESS=ahammedsupersoft@gmail.com
+
+
+
+NOTE: Tutorial 104 needs is required for sending register email online_gmail smtp after the website is uploaded online
+
+Solve "Call to undefined function App\Http\Controllers\Front\str_random()"
+composer require laravel/helpers
+###################################################################
+When you create helpers according to V112, 6:25
+you need to add this in the composer.json
+"files": [
+            "app/Helpers/Helper.php"
+        ]
+
+The Helper.php needs to be created in the app/Helper folder
+
+laravel 8 (Seeding Up)
+
+v113 25:01
+If you have upgraded your project to larvel 8 then you need to make the below changes for seeding to work
+Add below namespace at the top of DatabaseSeeder.php and Other Seeder files:-
+namespace Database\Seeder;
+ 
+In addition, move all seeders files from previous database\seeds folder to database\seeders folder
+
+Finally, you need to update composer.json file to rename seeds to seeders
+
+Lastly run below commands:-
+composer dump-autoload
+php artisan db:seed
+
+
+tutorial 124 needs to be rewatched because the delivery address for the radio button is not complete
+
+############ Updating the table #######################
+php artisan make:migration update_orders_table
+
+
+################ barcode api for laravel ###############
+https://github.com/milon/barcode
+
+composer require milon/barcode
+
+For resolving allowed memory size error
+allowed memory size of bytes exhausted laravel composer
+
+COMPOSER_MEMORY_LIMIT = -1 composer require milon/barcode
+
+installing dompdf
+composer require dompdf/dompdf
+
+https://htmlpdfapi.com/blog/free_html5_invoice_templates
+
+php artisan make:migration create_shipping_charges_table
+
+php artisan make:migration drop_column_from_shipping_charges_table
+
+ Schema::table('shipping_charges', function (Blueprint $table) {
+    //
+    $table->dropColumn('shipping_charges');
+});
+
+php artisan migrate
+php artisan make:migration add_column_to_shipping_charges_table
+
+
+for paypal testing 
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+
+payu money installation
+composer require softon/indipay
+
+https://github.com/softon/indipay
+
+#159 Integrate Paypal in Laravel (III) _ IPN _ Instant Payment Notification _ Paypal Payment Verification
+if in case "Time out" error comes then run below command 
+COMPOSER_MEMORY_LIMIT = -1 composer require softon/indipay
+
+Then run
+php artisan vendor:publish --provider="Softon\Indipay\IndipayServiceProvider"
+
+v 165 17:57 needs to be done cos it also touch aspect of payumoney
+
+v 166
+https://github.com/saravanakumargn/All-India-Pincode-Directory/blob/master/all-india-pincode-html-excel.xlsx
+
+php artisan make:migration create_cms_pages_table
+
+php artisan make:seeder CmsPagesTableSeeder
+
+php artisan make:model CmsPage
+
+php artisan db:seed
+
+composer dump-autoload
+
+https://www.xml-sitemaps.com/details-stackdevelopers.in-49b47ae7b.html
+
+http://tools.seobook.com/robots-txt/generator/
+
+https://www.seoptimer.com/robots-txt-generator
+
+
+
+
+Username:stackdevelopers
+Password:laravelwithamit
+
+
+$ php artisan make:migration create_admins_roles_table
+
+Admins/ SubAdmins Roles & Permissions
+
+Super Admin - 1
+Admins many 
+Sub Admins - many
+
+Admins/SubAdmins - Add/ Edit / Delete / View / Set Roles / Permissions
+
+View Access - Only Video, Can't edit or Delete
+View/Edit Access - View and Edit Possible but no Delete
+Full Access - View, Edit or Delete
+
+            View    Edit    Full
+Categories   1        0      0
+Products -   1        1      1
